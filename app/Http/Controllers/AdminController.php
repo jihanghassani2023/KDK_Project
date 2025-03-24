@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Counter;
 use App\Models\Queue;
-use App\Models\queues;
 use App\Models\Service;
 use Illuminate\Http\Request;
 

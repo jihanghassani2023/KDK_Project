@@ -15,6 +15,6 @@ class Counter extends Model
 
     public function queues()
     {
-        return $this->hasMany(queues::class);
+        return $this->hasMany(Queue::class);
     }
 }

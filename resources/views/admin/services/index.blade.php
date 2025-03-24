@@ -84,3 +84,46 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @forelse($services as $service)
+                            @forelse($services as $service)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $service->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $service->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $service->code }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $service->description ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if($service->is_active)
+                                            <span class="px-2 py-1 text-xs rounded-full bg-green-100 text-green-800">
+                                                Aktif
+                                            </span>
+                                        @else
+                                            <span class="px-2 py-1 text-xs rounded-full bg-red-100 text-red-800">
+                                                Nonaktif
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap flex space-x-2">
+                                        <a href="{{ route('admin.services.edit', $service->id) }}" class="bg-yellow-500 hover:bg-yellow-600 text-white py-1 px-3 rounded text-xs">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus layanan ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded text-xs">
+                                                <i class="fas fa-trash"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">Tidak ada layanan yang tersedia.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
